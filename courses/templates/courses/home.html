@@ -1,14 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>
-        Home Page
-    </h1>
-</body>
-</html>
+{%extends 'core/base.html'%}
+{%load course_custom_tag%}
+{%block title%}Home Page {%endblock title%}
+
+{%block content%} 
+    <style>
+        .price{
+            font-size: 20px;
+        }
+    </style>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            {%for course in courses%}
+            <div class="col ">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img src='{{course.thumbnail}}' class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{course.name}}</h5>
+                        <p class="card-text">
+                            Save {{course.discount}}%
+                            <br>
+                            <span class="price">
+                                <del>{{course.price | rupees}}</del>
+                                &nbsp;
+                                <span>
+                                    {%cal_sellprice course.price course.discount as value%} {{value|rupees}}
+                                </span>
+                            </span>
+                            
+                           
+                            
+                        </p>
+                       
+                    </div>
+
+                    <div class="card-footer p-0 ">
+                        <div class="row no-gutters">                             
+                            <div class="col"><a href="" class="btn btn-light btn-block border-right">Enroll Now</a></div>
+                            <div class="col"><a href="" class="btn btn-light btn-block ">Show More</a></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%} 
+        </div>
+
+    </div>
+
+  
+    
+
+{%endblock content%}

@@ -3,6 +3,7 @@ from django.db import models
 
 class Course(models.Model):
     name=models.CharField(max_length= 50, null=False)
+    slug = models.CharField(max_length=100, null = True)
     description=models.CharField(max_length=300, null=True)
     price=models.IntegerField(null=False)
     discount=models.IntegerField(null=False, default= 0)
