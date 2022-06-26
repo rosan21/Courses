@@ -7,7 +7,7 @@ register = template.Library()
 def cal_sellprice(price, discount):
     if discount is None or discount is 0:
         return price
-    ellprice = price
+    sellprice = price
     sellprice = price - (price*discount*0.01)
     return math.floor(sellprice)
 

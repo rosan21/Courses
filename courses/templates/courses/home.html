@@ -26,29 +26,28 @@
                                 <span>
                                     {%cal_sellprice course.price course.discount as value%} {{value|rupees}}
                                 </span>
-                            </span>
-                            
-                           
-                            
+                            </span>                       
                         </p>
                        
                     </div>
 
                     <div class="card-footer p-0 ">
                         <div class="row no-gutters">                             
-                            <div class="col"><a href="" class="btn btn-light btn-block border-right">Enroll Now</a></div>
-                            <div class="col"><a href="" class="btn btn-light btn-block ">Show More</a></div>
+                            <div class="col"><a href="" class="btn btn-light btn-block border-right" >Enroll Now</a></div>
+                            <div class="col"><a href="{% url 'coursepage' slug=course.slug%}" class="btn btn-light btn-block ">Show More</a></div>
                             
                         </div>
                     </div>
                 </div>
             </div>
             {%endfor%} 
+
+            
         </div>
 
     </div>
-
-  
+    <!-- /course/{{course.slug}}
+   -->
     
 
 {%endblock content%}
