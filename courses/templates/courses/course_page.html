@@ -1,9 +1,38 @@
 {%extends 'core/base.html'%}
 {%load course_custom_tag%}
+{% load static %}
 {%block title%}Course Page {%endblock title%}
-
+{%block css%} 
+<link rel="stylesheet" href="{% static 'courses/css/main.css'%}">
+{%endblock css%}
+{%block js%}
+<script src="{% static 'courses/js/course_page.js' %}"></script>
+{%endblock js%}
 {%block content%} 
-  
+
+    <style>
+      .active-link{
+        color: rgb(245, 247, 247);
+        background-color: rgb(161, 164, 167);
+        
+      }
+      .active-link:hover{
+        
+        color: rgb(79, 80, 80);
+        
+        
+      }
+      a:hover{
+        text-decoration: none;
+        
+        color: rgb(79, 80, 80);
+        
+      }
+      a{
+        
+        color: rgb(140, 142, 143);
+      }
+    </style>
     <br>
     <div class="container-fluid">
         <div hidden>
@@ -19,14 +48,19 @@
       <div class="card p-3">
         <div class="row">
             <div class="col">
-                <iframe id="player" width="100%" height="315" src="https://www.youtube.com/embed/bdOwl3Zge9g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="player" width="100%" height="315" src="https://www.youtube.com/embed/{{video.video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="col-3">
-                <ul class="list-group">             
-                    {%for video in course.video_set.all%}
-                        <li class="list-group-item"><a href="#">{{video.title}}</a></li>
+                <ul class="list-group" id="video-list">             
+                    {%for v in videos%}
+                        <li class="list-group-item {%if v == video %}active-link{%endif%}">
+                          <a href="?lecture={{v.serial_number}}">
+                            {{v.title}}
+                          </a>
+                        </li>
 
                     {%endfor%}
+                   
                 </ul>
             </div>
         </div>
@@ -63,37 +97,18 @@
                     {%for pre in course.learning_set.all%}
                         <li>{{pre.description}}</li>  
                     {%endfor%}
+                    
                   </ol>
+                 
                   
                 </div>
               </div>
         </div>
         
     </div>
-    <script>
-      var player;
-      // window.onload = ()=>{
-      //   player = document.getElementById('player')
-      //   maintainRatio()
-      // }
+   
 
-      document.onreadystatechange = function(){
-        if(document.readyState == 'interactive'){
-          player = document.getElementById('player')
-          maintainRatio()
-        }
-      }
 
-      function maintainRatio(){
-        var w = player.clientWidth
-        var h = (w*9)/16
-        console.log({w,h});
-        player.height = h
-      }
 
-      window.onresize = maintainRatio
-    </script>
-  
-    
 
 {%endblock content%}

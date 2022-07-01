@@ -1,6 +1,6 @@
 from django.contrib import admin
 from courses.models import Course, Tag, Learning, Prerequisite
-from courses.models import Video
+from courses.models import Video, UserCourse, Payment
 
 # Register your models here.
 
@@ -22,4 +22,6 @@ class CourseAdmin(admin.ModelAdmin):
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Video)
+admin.site.register(UserCourse)
+admin.site.register(Payment)
 

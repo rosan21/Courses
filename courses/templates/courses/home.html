@@ -1,13 +1,16 @@
 {%extends 'core/base.html'%}
 {%load course_custom_tag%}
+{%load static%}
 {%block title%}Home Page {%endblock title%}
+{%block css%} 
+<link rel="stylesheet" href="{% static 'courses/css/main.css'%}">
+{%endblock css%}
+{%block js%}
 
+{%endblock js%}
 {%block content%} 
-    <style>
-        .price{
-            font-size: 20px;
-        }
-    </style>
+
+    
     <br>
     <div class="container-fluid">
         <div class="row">
